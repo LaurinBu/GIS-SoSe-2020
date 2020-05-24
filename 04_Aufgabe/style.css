@@ -49,6 +49,10 @@ body {
             top: 0px;
     }
 
+    nav a:hover {
+        opacity: 0.5;
+    } 
+
     .navlinks {
         text-decoration: none;
         color: rgb(238, 255, 0);
@@ -67,9 +71,11 @@ body {
         text-align: left;
     }
 
-    h2{
+    h3{
         font-family: monospace;
         font-weight: lighter;
+        background-color: rgb(107, 107, 107);
+
     }
 
     #einkaufswagen{
@@ -77,19 +83,23 @@ body {
         position: fixed;
         margin-left: 30%;
         float: right;
+        top: 0px;
+        background-color: rgba(107, 107, 107, 0.507);
     }
 
     #einkaufswagen:hover {
         transform: scale(1.2);
      }
     
-     .bild {
+    .bild {
         max-width: 80%;
     }
 
     .bildgroeße {
-        max-width: 100%;
+        max-width: 20%;
      }
+
+    
 
      @media screen and (max-width: 600px){
         .wagen {
