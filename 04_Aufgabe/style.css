@@ -44,7 +44,7 @@ body {
     nav{
             position: sticky;
             position: fixed;
-            background-color: rgb(107, 107, 107);
+            background-color: rgb(107, 107, 107, 0.507);
             float: right;
             top: 0px;
     }
@@ -52,6 +52,10 @@ body {
     nav a:hover {
         opacity: 0.5;
     } 
+
+    #logo{
+        
+    }
 
     .navlinks {
         text-decoration: none;
@@ -151,7 +155,7 @@ body {
         text-align: center;
         margin-top: 2%;
         padding-top: 2%;
-        padding-bottom: 5%;
+        padding-bottom: 8%;
         border-style: solid;
         background-color: rgb(107, 107, 107);
         border-color: rgb(238, 255, 0);
