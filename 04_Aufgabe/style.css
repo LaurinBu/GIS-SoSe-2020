@@ -1,6 +1,7 @@
 body {
     text-align: center;
     margin: auto;
+    background-color: rgb(243, 240, 212);
     }   
 
     .rechteck{
@@ -54,7 +55,8 @@ body {
     } 
 
     #logo{
-        
+        position: fixed;
+        margin: 20px 10px 10px 10px;
     }
 
     .navlinks {
