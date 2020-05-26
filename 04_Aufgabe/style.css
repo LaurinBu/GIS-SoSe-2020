@@ -111,7 +111,7 @@ body {
 
      @media screen and (max-width: 600px){
         #einkaufswagen {
-            margin-top: 0px;
+            margin-top: 200px;
         }
     }
     
@@ -159,6 +159,7 @@ body {
 
     .natuerliche{
         display: flex;
+        flex: content;
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
@@ -188,8 +189,4 @@ body {
         border-color: rgb(238, 255, 0);
         border: 1;
         float: left;
-    }
-
-    .artikel:nth-child(even){
-        border-color: rgb(238, 255, 0);
     }
