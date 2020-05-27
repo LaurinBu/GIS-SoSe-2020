@@ -79,11 +79,21 @@ body {
         text-align: left;
     }
 
+    h2{
+        font-family: monospace;
+        font-weight: bold;
+    }
+
     h3{
         font-family: monospace;
         font-weight: lighter;
         background-color: rgb(107, 107, 107);
 
+    }
+
+    p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: lighter;
     }
 
     #einkaufswagen{
@@ -106,8 +116,6 @@ body {
     .bildgroeße {
         max-width: 20%;
      }
-
-    
 
      @media screen and (max-width: 600px){
         #einkaufswagen {
