@@ -61,16 +61,28 @@ body {
         background-color: rgb(107, 107, 107, 0.507);
     }
 
-    .navlinks {
+    #ess {
         text-decoration: none;
         color: rgb(238, 255, 0);
         border-left:2px solid rgb(255, 255, 255);
         border-right:2px solid rgb(255, 255, 255);
     }
 
-    .extralink {
+    #natu {
         text-decoration: none;
         color: rgb(238, 255, 0);
+    }
+
+    #spiel {
+        text-decoration: none;
+        color: rgb(238, 255, 0);
+    }
+
+    #all {
+        text-decoration: none;
+        color: rgb(238, 255, 0);
+        border-left:2px solid rgb(255, 255, 255);
+        border-right:2px solid rgb(255, 255, 255);
     }
 
     h1{
@@ -203,4 +215,15 @@ body {
         border-color: rgb(238, 255, 0);
         border: 1;
         float: left;
+    }
+
+    #circle {
+        border-radius: 50px;
+        width: 30px;
+        background-color: white;
+        color: black;
+        right: 260px;
+        position: fixed;
+        z-index: 50;
+        top: 33px;
     }
