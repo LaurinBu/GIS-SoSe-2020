@@ -44,9 +44,9 @@ var Aufgabe07;
             dokumentDiv.appendChild(div);
         }
     }
-    laden(Aufgabe06.natuerliche, "natuerliche");
-    laden(Aufgabe06.essbare, "essbare");
-    laden(Aufgabe06.spielbare, "spielbare");
+    laden(Aufgabe07.natuerliche, "natuerliche");
+    laden(Aufgabe07.essbare, "essbare");
+    laden(Aufgabe07.spielbare, "spielbare");
     let natu = document.getElementById("natu");
     natu.addEventListener("click", handleNatu);
     let ess = document.getElementById("ess");
@@ -111,5 +111,5 @@ var Aufgabe07;
         let sue = document.getElementById("ank3");
         sue.hidden = false;
     }
-})(Aufgabe06 || (Aufgabe06 = {}));
+})(Aufgabe07 || (Aufgabe07 = {}));
 //# sourceMappingURL=script.js.map
