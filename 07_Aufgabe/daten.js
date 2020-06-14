@@ -1,5 +1,5 @@
 "use strict";
-var Aufgabe06;
+var Aufgabe07;
 (function (Aufgabe06) {
     let birkenstock = { _name: "Frischer Birken Stock", _beschreibung: "Gut zum verfeuern!", _preis: 0.61, _bild: "birke.png" };
     let asia = { _name: "Asiatischer Bambus", _beschreibung: "Gut für konstruktion!", _preis: 1.20, _bild: "bambus_stick.png" };

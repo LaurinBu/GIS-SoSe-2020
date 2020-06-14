@@ -1,4 +1,4 @@
-namespace Aufgabe06 {
+namespace Aufgabe07 {
 
     let counter: number[] = [];
 

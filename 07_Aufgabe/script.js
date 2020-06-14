@@ -1,6 +1,6 @@
 "use strict";
-var Aufgabe06;
-(function (Aufgabe06) {
+var Aufgabe07;
+(function (Aufgabe07) {
     let counter = [];
     function laden(arr, docDiv) {
         for (let i = 0; i < arr.length; i++) {
