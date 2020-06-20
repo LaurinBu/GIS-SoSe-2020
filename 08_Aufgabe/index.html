@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="server.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h2>klk</h2>
+    <h2>Formular</h2>
 
-    <form action="https://gis-example.herokuapp.com" method="get">
-    <input type="text" name="text" id="text">
-    <button type="submit">dsdsdsdsd</button>
+    <form>
+    <input type="text" name="Vorname" id="vorname" placeholder="Vorname"> 
+    <br>
+    <input type="text" name="Name" id="name" placeholder="Name">
+    <br>
+    <input type="email" name="E-Mail" id="email" placeholder="E-Mail">
+    <br>
+    <input type="week" name="Woche" id="week" placholder="Woche">
+    <br>
+    <button id="send" type="button">Abschicken</button>
     </form>
 </body>
 </html>
