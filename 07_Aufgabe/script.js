@@ -2,23 +2,38 @@
 var Aufgabe07;
 (function (Aufgabe07) {
     let counter = [];
-    function laden(arr, docDiv) {
-        for (let i = 0; i < arr.length; i++) {
+    let artikelArray = [];
+    let natuerliche = document.getElementById("natuerliche");
+    let essbare = document.getElementById("essbare");
+    let spielbare = document.getElementById("spielbare");
+    async function laden(_url) {
+        let antwort = await fetch(_url);
+        let body = await antwort.json();
+        for (let i = 0; i < body.length; i++) {
             let div = document.createElement("div");
             div.setAttribute("class", "artikel");
+            if (body[i]._kategorie == "natuerliche") {
+                natuerliche.appendChild(div);
+            }
+            if (body[i]._kategorie == "essbare") {
+                essbare.appendChild(div);
+            }
+            if (body[i]._kategorie == "spielbare") {
+                spielbare.appendChild(div);
+            }
             let name = document.createElement("h2");
-            name.innerHTML = arr[i]._name;
+            name.innerHTML = body[i]._name;
             div.appendChild(name);
             let image = document.createElement("img");
-            image.setAttribute("src", arr[i]._bild);
+            image.setAttribute("src", body[i]._bild);
             image.setAttribute("class", "bild");
             div.appendChild(image);
             let descrip = document.createElement("p");
-            descrip.innerHTML = arr[i]._beschreibung;
+            descrip.innerHTML = body[i]._beschreibung;
             div.appendChild(descrip);
             let price = document.createElement("p");
             price.setAttribute("class", "preis");
-            price.innerHTML = "" + arr[i]._preis + "€  ";
+            price.innerHTML = "" + body[i]._preis + "€  ";
             div.appendChild(price);
             let button = document.createElement("button");
             button.setAttribute("type", "button");
@@ -32,21 +47,21 @@ var Aufgabe07;
                 document.getElementById("circle")?.appendChild(menge);
                 let inhalt = document.createElement("P");
                 menge.appendChild(inhalt);
-                counter.push(arr[i]._preis);
+                artikelArray.push(body[i]);
+                localStorage.setItem("Artikel", JSON.stringify(artikelArray));
+                counter.push(body[i]._preis);
                 let gesamt = 0;
                 for (let i = 0; i < counter.length; i++) {
                     gesamt = gesamt + counter[i];
                 }
-                console.log("Summe:" + gesamt.toLocaleString("de-DE", { "currency": "EUR", "style": "currency" }));
+                localStorage.setItem("Summe", gesamt.toString());
+                //localStorage.setItem("Summe", JSON.stringify(gesamt.toLocaleString("de-DE", { "currency": "EUR", "style": "currency"})));
+                //console.log("Summe:" + gesamt.toLocaleString("de-DE", { "currency": "EUR", "style": "currency" }));
                 inhalt.innerHTML = "" + counter.length;
             }
-            let dokumentDiv = document.getElementById(docDiv);
-            dokumentDiv.appendChild(div);
         }
     }
-    laden(Aufgabe07.natuerliche, "natuerliche");
-    laden(Aufgabe07.essbare, "essbare");
-    laden(Aufgabe07.spielbare, "spielbare");
+    laden("artikel.json");
     let natu = document.getElementById("natu");
     natu.addEventListener("click", handleNatu);
     let ess = document.getElementById("ess");

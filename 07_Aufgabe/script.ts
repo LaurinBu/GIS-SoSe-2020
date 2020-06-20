@@ -1,70 +1,91 @@
 namespace Aufgabe07 {
 
     let counter: number[] = [];
+    let artikelArray:  Artikel[] = [];
 
-    function laden(arr: Artikel[], docDiv: string): void {
-    
-    for (let i: number = 0; i < arr.length; i++) {
+    let natuerliche: HTMLElement = <HTMLElement>document.getElementById("natuerliche");
+    let essbare: HTMLElement = <HTMLElement>document.getElementById("essbare");
+    let spielbare: HTMLElement = <HTMLElement>document.getElementById("spielbare");
 
-        let div: HTMLElement = document.createElement("div");
-        div.setAttribute("class", "artikel");
+    async function laden(_url: RequestInfo): Promise<void> {
 
-        let name: HTMLElement = document.createElement("h2");
-        name.innerHTML = arr[i]._name;
-        div.appendChild(name);
+        let antwort: Response = await fetch(_url);
+        let body: Artikel[] = await antwort.json();
 
-        let image: HTMLElement = document.createElement("img");
-        image.setAttribute("src", arr[i]._bild);
-        image.setAttribute("class", "bild");
-        div.appendChild(image);
+        for (let i: number = 0; i < body.length; i++) {
 
-        let descrip: HTMLElement = document.createElement("p");
-        descrip.innerHTML = arr[i]._beschreibung;
-        div.appendChild(descrip);
+            let div: HTMLElement = document.createElement("div");
+            div.setAttribute("class", "artikel");
 
-        let price: HTMLElement = document.createElement("p");
-        price.setAttribute("class", "preis");
-        price.innerHTML = "" + arr[i]._preis + "€  ";
-        div.appendChild(price);
-
-        let button: HTMLElement = document.createElement("button");
-        button.setAttribute("type", "button");
-        button.innerText = "Kaufen";
-        price.appendChild(button);
-        button.addEventListener("click", handleMenge);
-        
-        function handleMenge(): void {
-
-            document.getElementById("anzahl")?.remove();
-
-            let menge: HTMLElement = document.createElement("div");
-            menge.setAttribute("id", "anzahl");
-            document.getElementById("circle")?.appendChild(menge);
-
-            let inhalt: HTMLElement = document.createElement("P");
-            menge.appendChild(inhalt);
-
-            counter.push(arr[i]._preis);
-
-            let gesamt: number = 0;
-
-            for (let i: number = 0; i < counter.length; i++){
-                gesamt = gesamt + counter[i];
+            if (body[i]._kategorie == "natuerliche") {
+                natuerliche.appendChild(div);
             }
 
-            console.log("Summe:" + gesamt.toLocaleString("de-DE", {"currency": "EUR", "style": "currency"}));
+            if (body[i]._kategorie == "essbare") {
+                essbare.appendChild(div);
+            }
 
-            inhalt.innerHTML = "" + counter.length;
+            if (body[i]._kategorie == "spielbare") {
+                spielbare.appendChild(div);
+            }
+
+            let name: HTMLElement = document.createElement("h2");
+            name.innerHTML = body[i]._name;
+            div.appendChild(name);
+
+            let image: HTMLElement = document.createElement("img");
+            image.setAttribute("src", body[i]._bild);
+            image.setAttribute("class", "bild");
+            div.appendChild(image);
+
+            let descrip: HTMLElement = document.createElement("p");
+            descrip.innerHTML = body[i]._beschreibung;
+            div.appendChild(descrip);
+
+            let price: HTMLElement = document.createElement("p");
+            price.setAttribute("class", "preis");
+            price.innerHTML = "" + body[i]._preis + "€  ";
+            div.appendChild(price);
+
+            let button: HTMLElement = document.createElement("button");
+            button.setAttribute("type", "button");
+            button.innerText = "Kaufen";
+            price.appendChild(button);
+            button.addEventListener("click", handleMenge);
+
+            function handleMenge(): void {
+
+                document.getElementById("anzahl")?.remove();
+
+                let menge: HTMLElement = document.createElement("div");
+                menge.setAttribute("id", "anzahl");
+                document.getElementById("circle")?.appendChild(menge);
+
+                let inhalt: HTMLElement = document.createElement("P");
+                menge.appendChild(inhalt);
+
+                artikelArray.push(body[i]);
+
+                localStorage.setItem("Artikel", JSON.stringify(artikelArray)!);
+
+                counter.push(body[i]._preis);
+
+                let gesamt: number = 0;
+
+                for (let i: number = 0; i < counter.length; i++) {
+                    gesamt = gesamt + counter[i];
+                }
+
+                localStorage.setItem("Summe", gesamt.toString());
+                //localStorage.setItem("Summe", JSON.stringify(gesamt.toLocaleString("de-DE", { "currency": "EUR", "style": "currency"})));
+                //console.log("Summe:" + gesamt.toLocaleString("de-DE", { "currency": "EUR", "style": "currency" }));
+
+                inhalt.innerHTML = "" + counter.length;
+            }
         }
-
-        let dokumentDiv: HTMLElement = <HTMLElement>document.getElementById(docDiv);
-        dokumentDiv.appendChild(div);
     }
-} 
 
-    laden(natuerliche, "natuerliche");
-    laden(essbare, "essbare");
-    laden(spielbare, "spielbare");
+    laden("artikel.json");
 
     let natu: HTMLElement = <HTMLElement>document.getElementById("natu");
     natu.addEventListener("click", handleNatu);
@@ -79,22 +100,22 @@ namespace Aufgabe07 {
     all.addEventListener("click", handleAll);
 
     function handleNatu(): void {
-        let ess: HTMLElement = <HTMLElement> document.getElementById("essbare");
+        let ess: HTMLElement = <HTMLElement>document.getElementById("essbare");
         ess.style.display = "none";
 
-        let spiel: HTMLElement = <HTMLElement> document.getElementById("spielbare");
+        let spiel: HTMLElement = <HTMLElement>document.getElementById("spielbare");
         spiel.style.display = "none";
 
-        let natu: HTMLElement = <HTMLElement> document.getElementById("natuerliche");
+        let natu: HTMLElement = <HTMLElement>document.getElementById("natuerliche");
         natu.style.display = "flex";
 
-        let nue: HTMLElement = <HTMLElement> document.getElementById("ank1");
+        let nue: HTMLElement = <HTMLElement>document.getElementById("ank1");
         nue.hidden = false;
 
-        let eue: HTMLElement = <HTMLElement> document.getElementById("ank2");
+        let eue: HTMLElement = <HTMLElement>document.getElementById("ank2");
         eue.hidden = true;
-        
-        let sue: HTMLElement = <HTMLElement> document.getElementById("ank3");
+
+        let sue: HTMLElement = <HTMLElement>document.getElementById("ank3");
         sue.hidden = true;
     }
 
@@ -108,13 +129,13 @@ namespace Aufgabe07 {
         let natu: HTMLElement = <HTMLElement>document.getElementById("natuerliche");
         natu.style.display = "none";
 
-        let nue: HTMLElement = <HTMLElement> document.getElementById("ank1");
+        let nue: HTMLElement = <HTMLElement>document.getElementById("ank1");
         nue.hidden = true;
 
-        let eue: HTMLElement = <HTMLElement> document.getElementById("ank2");
+        let eue: HTMLElement = <HTMLElement>document.getElementById("ank2");
         eue.hidden = false;
-        
-        let sue: HTMLElement = <HTMLElement> document.getElementById("ank3");
+
+        let sue: HTMLElement = <HTMLElement>document.getElementById("ank3");
         sue.hidden = true;
     }
 
@@ -128,13 +149,13 @@ namespace Aufgabe07 {
         let natu: HTMLElement = <HTMLElement>document.getElementById("natuerliche");
         natu.style.display = "none";
 
-        let nue: HTMLElement = <HTMLElement> document.getElementById("ank1");
+        let nue: HTMLElement = <HTMLElement>document.getElementById("ank1");
         nue.hidden = true;
 
-        let eue: HTMLElement = <HTMLElement> document.getElementById("ank2");
+        let eue: HTMLElement = <HTMLElement>document.getElementById("ank2");
         eue.hidden = true;
-        
-        let sue: HTMLElement = <HTMLElement> document.getElementById("ank3");
+
+        let sue: HTMLElement = <HTMLElement>document.getElementById("ank3");
         sue.hidden = false;
     }
 
@@ -148,15 +169,13 @@ namespace Aufgabe07 {
         let natu: HTMLElement = <HTMLElement>document.getElementById("natuerliche");
         natu.style.display = "flex";
 
-        let nue: HTMLElement = <HTMLElement> document.getElementById("ank1");
+        let nue: HTMLElement = <HTMLElement>document.getElementById("ank1");
         nue.hidden = false;
 
-        let eue: HTMLElement = <HTMLElement> document.getElementById("ank2");
+        let eue: HTMLElement = <HTMLElement>document.getElementById("ank2");
         eue.hidden = false;
-        
-        let sue: HTMLElement = <HTMLElement> document.getElementById("ank3");
+
+        let sue: HTMLElement = <HTMLElement>document.getElementById("ank3");
         sue.hidden = false;
     }
-
-
 }

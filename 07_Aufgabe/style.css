@@ -117,6 +117,10 @@ body {
         background-color: rgba(107, 107, 107, 0.507);
     }
 
+    #entfernenButton {
+        background-color: rgb(184, 184, 184);
+    }
+
     #einkaufswagen:hover {
         transform: scale(1.1);
      }
@@ -196,6 +200,12 @@ body {
     }
 
     #spielbare{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    #korb{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
